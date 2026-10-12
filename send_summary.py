@@ -104,7 +104,7 @@ def build_email(metrics):
 
     lines = [
         f"<h2>VN Stock Briefing — {TODAY}</h2>",
-        "<h3>📊 Tổng quan 10 mã</h3>",
+        f"<h3>📊 Tổng quan {len(metrics)} mã</h3>",
         "<table border='1' cellpadding='6' cellspacing='0' style='border-collapse:collapse;font-family:Arial;font-size:13px'>",
         "<tr style='background:#f0f0f0'><th>Mã</th><th>Return 30D</th><th>Volatility</th><th>Trend</th></tr>",
     ]
@@ -162,7 +162,7 @@ def send_email(html_body):
 
 def get_latest_report() -> Path | None:
     """Tìm report HTML mới nhất trong vòng 3 ngày gần nhất."""
-    reports_dir = Path("data/reports")
+    reports_dir = Path("reports")
     if not reports_dir.exists():
         return None
     cutoff = date.today() - timedelta(days=3)
